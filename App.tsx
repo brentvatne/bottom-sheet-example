@@ -1,5 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, Alert } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  Platform,
+} from 'react-native';
 import {
   createBottomTabNavigator,
   createAppContainer,
@@ -165,7 +171,9 @@ class ProfileSwitcher extends React.Component {
       <React.Fragment>
         <TapGestureHandler onHandlerStateChange={this.handleTapStateChange}>
           <Animated.View
-            pointerEvents={this.pointerEvents}
+            pointerEvents={
+              Platform.OS === 'android' ? 'none' : this.pointerEvents
+            }
             style={[
               StyleSheet.absoluteFill,
               { opacity: this.overlayOpacity, backgroundColor: 'black' },
